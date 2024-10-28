@@ -1,20 +1,15 @@
 import pygame
 
-class Character:
+class Character (pygame.sprite.Sprite):
     def __init__(self, sizeW, sizeH, positionX, positionY):
-        self.shape = pygame.Rect(positionX, positionY, sizeW, sizeH)
+        super().__init__()
+
+        self.image = pygame.Surface((sizeW, sizeH))
+        self.image.fill((255,255,255))
         
+        self.rect = self.image.get_rect(center=(positionX, positionY))
 
-        self.positionX = positionX
-        self.positionY = positionY
-        self.sizeW = sizeW
-        self.sizeH = sizeH
-
-    def drawCharacter(self, screen):
-        pygame.draw.rect(screen, (255, 255, 255), self.shape) 
-
-    def movement(self):
+    def update(self):
         px, py = pygame.mouse.get_pos()
 
-        self.positionY = py
-        self.shape.center = (self.positionX, self.positionY)
+        self.rect.y = py
