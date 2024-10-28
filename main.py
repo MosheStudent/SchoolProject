@@ -7,11 +7,14 @@ import Ball
 
 pygame.init()
 
-screen = pygame.display.set_mode((800, 800))
+screen_Width = 500
+screen_Hieght = 500
+
+screen = pygame.display.set_mode((screen_Width, screen_Hieght))
 pygame.display.set_caption("PONG")
 
 char = Character.Character(30, 100, 50, 0)
-ball = Ball.Ball(40, (50,50))
+ball = Ball.Ball(20, (screen_Width, screen_Hieght))
 
 allsprites = pygame.sprite.Group()
 allsprites.add(ball)

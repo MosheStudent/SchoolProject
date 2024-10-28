@@ -12,4 +12,4 @@ class Character (pygame.sprite.Sprite):
     def update(self):
         px, py = pygame.mouse.get_pos()
 
-        self.rect.y = py
+        self.rect.centery = py
