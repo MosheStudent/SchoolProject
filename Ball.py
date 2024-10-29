@@ -1,5 +1,11 @@
 import pygame
 import random
+import Character
+
+pygame.mixer.init()
+clock = pygame.time.Clock()
+wallSound = pygame.mixer.Sound("wall.mp3")
+deathSound = pygame.mixer.Sound("die.mp3")
 
 
 class Ball (pygame.sprite.Sprite):
@@ -21,15 +27,30 @@ class Ball (pygame.sprite.Sprite):
 
         if self.rect.topleft[0] <= 0:
             self.speed[0] *= -1
+            wallSound.play()
 
         if self.rect.topright[0] >= self.screen_wid:
             self.speed[0] *=-1
+            wallSound.play()
 
         if self.rect.topright[1] <= 0:
             self.speed [1] *= -1 
+            wallSound.play()
 
         if self.rect.bottomleft[1] >= self.screen_hie:
             self.speed[1] *= -1
+            wallSound.play()
+        
+    def end(self, Character):
+        if self.rect.bottomleft [0] < Character.rect.bottomright[0] - 10:
+            #deathSound.play()
+            pass
+
+
+
+        
+
+
 
 
 

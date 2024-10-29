@@ -6,10 +6,18 @@ import Ball
 
 
 pygame.init()
+pygame.mixer.init()
+
+paddleSound = pygame.mixer.Sound("Paddle.mp3")
+
+
 
 screen_Width = 500
 screen_Hieght = 500
 
+icon = pygame.image.load("Empty.png")
+
+pygame.display.set_icon(icon)
 screen = pygame.display.set_mode((screen_Width, screen_Hieght))
 pygame.display.set_caption("PONG")
 
@@ -27,6 +35,12 @@ while True:
 
     allsprites.draw(screen)
     allsprites.update()
+    ball.end(char)
+
+    if char.rect.colliderect(ball):
+        ball.speed [0] *=-1
+        paddleSound.play()
+
 
 
 

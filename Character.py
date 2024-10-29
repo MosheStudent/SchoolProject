@@ -13,3 +13,4 @@ class Character (pygame.sprite.Sprite):
         px, py = pygame.mouse.get_pos()
 
         self.rect.centery = py
+
