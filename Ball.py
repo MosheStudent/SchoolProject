@@ -61,10 +61,8 @@ class Ball (pygame.sprite.Sprite):
             wallSound.play()
         
     def end(self, Character):
-        if self.rect.bottomleft [0] < Character.rect.bottomright[0] - 10:
-            #deathSound.play()
-            pass
-
+        if self.rect.bottomleft[0] <= 3: 
+            return True
 
 
         

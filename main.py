@@ -38,8 +38,14 @@ while True:
     ball.end(char)
 
     if char.rect.colliderect(ball):
-        ball.speed [0] *=-1
+        if ball.speed[0] < 0: 
+            ball.speed [0] *=-1
+
+
         paddleSound.play()
+    
+    if ball.end(char):
+        exit()
 
 
 
