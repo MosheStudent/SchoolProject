@@ -3,6 +3,7 @@ from pygame.locals import *
 from sys import exit
 import Character
 import Ball
+import random
 
 
 pygame.init()
@@ -22,11 +23,15 @@ screen = pygame.display.set_mode((screen_Width, screen_Hieght))
 pygame.display.set_caption("PONG")
 
 char = Character.Character(30, 100, 50, 0)
-ball = Ball.Ball(20, (screen_Width, screen_Hieght), 10)
+
+ballSpeed = 10
+ball = Ball.Ball(20, (screen_Width, screen_Hieght), ballSpeed)
 
 allsprites = pygame.sprite.Group()
 allsprites.add(ball)
 allsprites.add(char)
+
+max_speedX = 20
 
 
 clock = pygame.time.Clock()
@@ -39,7 +44,17 @@ while True:
 
     if char.rect.colliderect(ball):
         if ball.speed[0] < 0: 
-            ball.speed [0] *=-1
+            power = random.random()
+
+            if power %2 == 0:
+                power = 0
+            
+
+            ball.speed [0] *=-(1 + power)
+
+            if ball.speed[0] > 20:
+                ball.speed [0] = ballSpeed
+
 
 
         paddleSound.play()
