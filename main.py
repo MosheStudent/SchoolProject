@@ -22,7 +22,7 @@ screen = pygame.display.set_mode((screen_Width, screen_Hieght))
 pygame.display.set_caption("PONG")
 
 char = Character.Character(30, 100, 50, 0)
-ball = Ball.Ball(20, (screen_Width, screen_Hieght))
+ball = Ball.Ball(20, (screen_Width, screen_Hieght), 10)
 
 allsprites = pygame.sprite.Group()
 allsprites.add(ball)
@@ -34,7 +34,7 @@ while True:
     screen.fill((0,0,0))
 
     allsprites.draw(screen)
-    allsprites.update()
+    allsprites.update() 
     ball.end(char)
 
     if char.rect.colliderect(ball):

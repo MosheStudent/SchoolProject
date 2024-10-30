@@ -1,6 +1,6 @@
 import pygame
 import random
-import Character
+import math
 
 pygame.mixer.init()
 clock = pygame.time.Clock()
@@ -9,7 +9,7 @@ deathSound = pygame.mixer.Sound("die.mp3")
 
 
 class Ball (pygame.sprite.Sprite):
-    def __init__(self, radius, pos):
+    def __init__(self, radius, pos, speedVector):
         super().__init__()
         self.screen_wid = pos[0]
         self.screen_hie = pos[1]
@@ -18,7 +18,26 @@ class Ball (pygame.sprite.Sprite):
         pygame.draw.circle(self.image, (255,255,255),(radius, radius), radius)
 
         self.rect = self.image.get_rect(center = (self.screen_wid//2, self.screen_hie//2))
-        self.speed = [random.randint(-10, 10), random.randint(-10, 10)]
+
+        #makes constant speed vector: 
+
+        speedlist = [-1, 1]
+
+        self.speedX1 = random.randint(-(speedVector -1), -4)
+        self.speedX2 = random.randint(4 , (speedVector - 1))
+
+        speedxlist = [self.speedX1, self.speedX2]
+
+        self.speedX = random.choice(speedxlist)
+        self.speedCoefficient = random.choice(speedlist)
+
+
+
+        self.speed = [self.speedX, int (self.speedCoefficient * math.sqrt((speedVector**2 - self.speedX**2)))]
+
+
+
+
 
 
     def update(self):
